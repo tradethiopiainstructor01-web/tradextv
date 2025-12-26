@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: false,
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -17,17 +17,17 @@ module.exports = {
     },
     extend: {
       colors: {
-        bg: '#0B0F14',
-        surface: '#111827',
-        surfaceHover: '#1F2937',
+        bg: '#ffffff',
+        surface: '#F9FAFB',
+        surfaceHover: '#E5E7EB',
         brandBlue: '#1E40AF',
         brandBlueLight: '#2563EB',
         brandGold: '#D4AF37',
         brandGoldSoft: '#F5D76E',
-        textPrimary: '#F9FAFB',
-        textSecondary: '#9CA3AF',
-        textMuted: '#6B7280',
-        borderSubtle: '#1F2937',
+        textPrimary: '#0F172A',
+        textSecondary: '#6B7280',
+        textMuted: '#9CA3AF',
+        borderSubtle: '#E5E7EB',
         danger: '#DC2626',
         success: '#16A34A',
       },
