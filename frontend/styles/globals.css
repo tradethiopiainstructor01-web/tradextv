@@ -32,12 +32,12 @@ body {
 .hero-spotlight {
   position: relative;
   width: 100%;
-  min-height: 520px;
+  min-height: 420px;
   overflow: hidden;
-  margin-bottom: 32px;
-  border-radius: 32px;
+  margin-bottom: 24px;
+  border-radius: 24px;
   border: 1px solid rgba(229, 231, 235, 0.8);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   background: white;
   display: flex;
   flex-direction: row;
@@ -72,7 +72,7 @@ body {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 64px 32px;
+  padding: 40px 24px;
   max-width: 640px;
   flex: 1;
 }
@@ -87,16 +87,16 @@ body {
 
 .hero-content h1 {
   margin: 0;
-  font-size: clamp(2.5rem, 3vw, 3.4rem);
-  line-height: 1.1;
+  font-size: clamp(2rem, 2.5vw, 2.8rem);
+  line-height: 1.15;
   color: #0f172a;
 }
 
 .hero-subhead {
-  margin: 12px 0 0;
-  font-size: 1rem;
+  margin: 8px 0 0;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  max-width: 360px;
+  max-width: 320px;
 }
 
 .hero-content p {
@@ -127,9 +127,9 @@ body {
 
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .hero-actions button {
@@ -140,7 +140,7 @@ body {
   background-color: var(--accent-gold);
   color: #0f172a;
   border: none;
-  padding: 14px 28px;
+  padding: 10px 20px;
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
@@ -253,11 +253,11 @@ body {
 }
 
 .section-block {
-  border-radius: 28px;
+  border-radius: 16px;
   border: 1px solid var(--border-color);
-  padding: 32px;
+  padding: 24px;
   background: white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .slider-row {
@@ -863,11 +863,11 @@ body {
 }
 
 .card {
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 16px;
   border: 1px solid var(--border-color);
   background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
 .card h3 {
@@ -2690,7 +2690,7 @@ body {
   }
 
   .market-card {
-    padding: 14px;
+    padding: 12px;
   }
   
   .market-grid {
