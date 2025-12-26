@@ -454,76 +454,21 @@ const HomePage: NextPage = () => {
 
   return (
     <div className="homepage-container">
-      <Slider />
-      {/* A. Lead Story Module (Hero) */}
       <section className="lead-story-module">
         <div className="responsive-grid">
-          <div className="grid-item cols-8 mobile-cols-4">
-            <div className="slider">
-              <ul className="slides">
-                <li className="slide">
-                  <div className="hero-main">
-                    <div className="hero-badge">BREAKING</div>
-                    <h1>{leadStory.title}</h1>
-                    <p className="hero-summary">{leadStory.summary}</p>
-                    <div className="hero-meta">
-                      <span className="hero-category">{leadStory.category}</span>
-                      <span className="hero-timestamp">{leadStory.timestamp}</span>
-                    </div>
-                    <div className="hero-image">
-                      <img src={leadStory.image} alt={leadStory.title} />
-                    </div>
-                  </div>
-                </li>
-                <li className="slide">
-                  <div className="hero-main">
-                    <div className="hero-badge">MARKET UPDATE</div>
-                    <h1>Fed Policy Shift Impacts Global Markets</h1>
-                    <p className="hero-summary">Central bank decisions send ripples across international exchanges as investors adjust strategies.</p>
-                    <div className="hero-meta">
-                      <span className="hero-category">Markets</span>
-                      <span className="hero-timestamp">15 min ago</span>
-                    </div>
-                    <div className="hero-image">
-                      <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&w=1200&q=80" alt="Fed Policy Impact" />
-                    </div>
-                  </div>
-                </li>
-                <li className="slide">
-                  <div className="hero-main">
-                    <div className="hero-badge">TECH INSIGHT</div>
-                    <h1>AI Revolution Transforms Finance Sector</h1>
-                    <p className="hero-summary">Artificial intelligence adoption accelerates across financial services, driving efficiency and innovation.</p>
-                    <div className="hero-meta">
-                      <span className="hero-category">Technology</span>
-                      <span className="hero-timestamp">30 min ago</span>
-                    </div>
-                    <div className="hero-image">
-                      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="AI in Finance" />
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <aside className="slider-nav">
-                <a href="#" className="nav-dot">•</a>
-                <a href="#" className="nav-dot">•</a>
-                <a href="#" className="nav-dot">•</a>
-              </aside>
-            </div>
-          </div>
-          <div className="grid-item cols-4 mobile-cols-4">
-            <div className="top-stories">
-              <h2>Top Stories</h2>
-              <div className="top-stories-list">
-                {topStories.map((story) => (
-                  <article key={story.id} className="top-story-item">
-                    <h3>{story.title}</h3>
-                    <div className="top-story-meta">
-                      <span className="top-story-category">{story.category}</span>
-                      <span className="top-story-timestamp">{story.timestamp}</span>
-                    </div>
-                  </article>
-                ))}
+          <div className="grid-item cols-12">
+            <div className="hero-spotlight">
+              <div className="hero-content">
+                <div className="hero-kicker">TradeXTV</div>
+                <h1>Where Business, Markets & Innovation Meet Africa</h1>
+                <p className="hero-subhead">Premium financial insights and market analysis for African business leaders</p>
+                <div className="hero-actions">
+                  <button className="primary-btn blue">🎥 Watch Programs</button>
+                  <button className="primary-btn gold">🏢 Promote Your Company</button>
+                </div>
+              </div>
+              <div className="hero-video-section">
+                <img className="hero-video-bg" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Featured content" />
               </div>
             </div>
           </div>
