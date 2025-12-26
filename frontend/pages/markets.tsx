@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { ResponsiveGrid, GridItem } from '../components/ResponsiveGrid';
 
 const marketBlocks = [
   { title: 'Export Volume', value: '+12% YoY', detail: 'Textiles, agri tech, leather' },
@@ -9,23 +10,29 @@ const marketBlocks = [
 
 const MarketsPage: NextPage = () => (
   <div className="page-wrapper">
-    <section className="section-block">
-      <p className="hero-kicker">Trade & Markets</p>
-      <h1>Business data for founders and investors.</h1>
-      <p className="hero-subhead">Live indicators, export corridors, and investor telemetry in one feed.</p>
-    </section>
+    <ResponsiveGrid>
+      <GridItem desktopCols={12} tabletCols={4} mobileCols={4}>
+        <section className="section-block">
+          <p className="hero-kicker">Trade & Markets</p>
+          <h1>Business data for founders and investors.</h1>
+          <p className="hero-subhead">Live indicators, export corridors, and investor telemetry in one feed.</p>
+        </section>
+      </GridItem>
 
-    <section className="section-block">
-      <div className="market-grid">
-        {marketBlocks.map((block) => (
-          <article className="market-card" key={block.title}>
-            <h3>{block.title}</h3>
-            <p className="card-meta">{block.detail}</p>
-            <strong>{block.value}</strong>
-          </article>
-        ))}
-      </div>
-    </section>
+      <GridItem desktopCols={12} tabletCols={4} mobileCols={4}>
+        <section className="section-block">
+          <div className="market-grid">
+            {marketBlocks.map((block) => (
+              <article className="market-card" key={block.title}>
+                <h3>{block.title}</h3>
+                <p className="card-meta">{block.detail}</p>
+                <strong>{block.value}</strong>
+              </article>
+            ))}
+          </div>
+        </section>
+      </GridItem>
+    </ResponsiveGrid>
   </div>
 );
 

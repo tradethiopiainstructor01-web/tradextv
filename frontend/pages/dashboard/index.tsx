@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { ResponsiveGrid, GridItem } from '../../components/ResponsiveGrid';
 
 const analyticsStats = [
   { label: 'Total Views', value: '482K' },
@@ -89,79 +90,87 @@ const CreatorDashboard: NextPage = () => (
       </div>
     </section>
 
-    <div className="terminal-grid">
-      <section className="upload-panel terminal-panel section-block">
-        <h2>Upload content</h2>
-        <form className="upload-form">
-          <label>
-            File
-            <input type="file" />
-          </label>
-          <label>
-            Category
-            <select defaultValue="startup">
-              <option value="startup">Startup</option>
-              <option value="finance">Finance</option>
-              <option value="export">Export</option>
-              <option value="tech">Tech</option>
-            </select>
-          </label>
-          <label>
-            Premiere
-            <input type="date" />
-          </label>
-          <button type="button" className="primary-btn">
-            Upload
-          </button>
-        </form>
-      </section>
+    <ResponsiveGrid>
+      <GridItem desktopCols={4} tabletCols={4} mobileCols={4}>
+        <section className="upload-panel terminal-panel section-block">
+          <h2>Upload content</h2>
+          <form className="upload-form">
+            <label>
+              File
+              <input type="file" />
+            </label>
+            <label>
+              Category
+              <select defaultValue="startup">
+                <option value="startup">Startup</option>
+                <option value="finance">Finance</option>
+                <option value="export">Export</option>
+                <option value="tech">Tech</option>
+              </select>
+            </label>
+            <label>
+              Premiere
+              <input type="date" />
+            </label>
+            <button type="button" className="primary-btn">
+              Upload
+            </button>
+          </form>
+        </section>
+      </GridItem>
 
-      <section className="analytics-panel terminal-panel section-block">
-        <h2>Analytics</h2>
-        <div className="analytics-grid">
-          {analyticsStats.map((stat) => (
-            <article className="analytics-card" key={stat.label}>
-              <p className="meta-label">{stat.label}</p>
-              <strong>{stat.value}</strong>
-            </article>
-          ))}
-        </div>
-      </section>
+      <GridItem desktopCols={4} tabletCols={4} mobileCols={4}>
+        <section className="analytics-panel terminal-panel section-block">
+          <h2>Analytics</h2>
+          <div className="analytics-grid">
+            {analyticsStats.map((stat) => (
+              <article className="analytics-card" key={stat.label}>
+                <p className="meta-label">{stat.label}</p>
+                <strong>{stat.value}</strong>
+              </article>
+            ))}
+          </div>
+        </section>
+      </GridItem>
 
-      <section className="revenue-panel terminal-panel section-block">
-        <h2>Revenue</h2>
-        <div className="revenue-grid">
-          {revenueEvents.map((event) => (
-            <article className="revenue-card" key={event.label}>
-              <div>
-                <p className="meta-label">{event.label}</p>
-                <strong>{event.amount}</strong>
-              </div>
-              <span className={`status-pill status-${event.status.replace(/\s+/g, '-').toLowerCase()}`}>
-                {event.status}
-              </span>
-            </article>
-          ))}
-        </div>
-      </section>
+      <GridItem desktopCols={4} tabletCols={4} mobileCols={4}>
+        <section className="revenue-panel terminal-panel section-block">
+          <h2>Revenue</h2>
+          <div className="revenue-grid">
+            {revenueEvents.map((event) => (
+              <article className="revenue-card" key={event.label}>
+                <div>
+                  <p className="meta-label">{event.label}</p>
+                  <strong>{event.amount}</strong>
+                </div>
+                <span className={`status-pill status-${event.status.replace(/\s+/g, '-').toLowerCase()}`}>
+                  {event.status}
+                </span>
+              </article>
+            ))}
+          </div>
+        </section>
+      </GridItem>
 
-      <section className="comments-panel terminal-panel section-block">
-        <h2>Comments</h2>
-        <div className="comment-list">
-          {comments.map((comment) => (
-            <article className="comment-card" key={comment.user}>
-              <div>
-                <strong>{comment.user}</strong>
-                <p>{comment.text}</p>
-              </div>
-              <span className={`status-pill status-${comment.sentiment.replace(/\s+/g, '-')}`}>
-                {comment.sentiment}
-              </span>
-            </article>
-          ))}
-        </div>
-      </section>
-    </div>
+      <GridItem desktopCols={12} tabletCols={4} mobileCols={4}>
+        <section className="comments-panel terminal-panel section-block">
+          <h2>Comments</h2>
+          <div className="comment-list">
+            {comments.map((comment) => (
+              <article className="comment-card" key={comment.user}>
+                <div>
+                  <strong>{comment.user}</strong>
+                  <p>{comment.text}</p>
+                </div>
+                <span className={`status-pill status-${comment.sentiment.replace(/\s+/g, '-')}`}>
+                  {comment.sentiment}
+                </span>
+              </article>
+            ))}
+          </div>
+        </section>
+      </GridItem>
+    </ResponsiveGrid>
   </div>
 );
 

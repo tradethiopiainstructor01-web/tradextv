@@ -7,6 +7,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="layout-container">
@@ -19,6 +20,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Link>
           </div>
           
+          {/* Mobile Menu Button */}
+          <button 
+            className="mobile-menu-btn"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          
+          {/* Desktop Navigation */}
           <nav className="primary-nav">
             <Link href="/markets" className="nav-link">Markets</Link>
             <Link href="/economics" className="nav-link">Economics</Link>
@@ -31,6 +46,25 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="dropdown-content">
                 <Link href="/businessweek">Businessweek</Link>
                 <Link href="/citylab">CityLab/Green</Link>
+              </div>
+            </div>
+          </nav>
+          
+          {/* Mobile Navigation */}
+          <nav className={`mobile-nav ${isMobileMenuOpen ? 'mobile-nav-open' : ''}`}>
+            <div className="mobile-nav-content">
+              <Link href="/markets" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Markets</Link>
+              <Link href="/economics" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Economics</Link>
+              <Link href="/industries" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Industries</Link>
+              <Link href="/tech" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Tech</Link>
+              <Link href="/politics" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Politics</Link>
+              <Link href="/opinion" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Opinion</Link>
+              <div className="mobile-nav-dropdown">
+                <span className="nav-link">Businessweek</span>
+                <div className="mobile-dropdown-content">
+                  <Link href="/businessweek" onClick={() => setIsMobileMenuOpen(false)}>Businessweek</Link>
+                  <Link href="/citylab" onClick={() => setIsMobileMenuOpen(false)}>CityLab/Green</Link>
+                </div>
               </div>
             </div>
           </nav>

@@ -16,6 +16,7 @@ const ResponsiveGrid: React.FC<GridProps> = ({ children, className = '' }) => {
 interface GridItemProps {
   children: ReactNode;
   desktopCols?: number;
+  tabletCols?: number;
   mobileCols?: number;
   className?: string;
 }
@@ -23,12 +24,13 @@ interface GridItemProps {
 const GridItem: React.FC<GridItemProps> = ({ 
   children, 
   desktopCols = 1, 
-  mobileCols = 1, 
+  tabletCols = 2, // Default to 2 columns on tablet
+  mobileCols = 4, // Default to full width on mobile
   className = '' 
 }) => {
   return (
     <div 
-      className={`grid-item cols-${desktopCols} mobile-cols-${mobileCols} ${className}`}
+      className={`grid-item cols-${desktopCols} tablet-cols-${tabletCols} mobile-cols-${mobileCols} ${className}`}
     >
       {children}
     </div>

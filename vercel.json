@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "functions": {
+    "backend/api/index.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/api/index.js"
+    }
+  ]
+}

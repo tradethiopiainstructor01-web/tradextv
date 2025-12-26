@@ -34,6 +34,14 @@ interface OpinionItem {
   avatar: string;
 }
 
+interface CompanySpotlight {
+  id: string;
+  name: string;
+  sector: string;
+  ticker: string;
+  logo: string;
+}
+
 const HomePage: NextPage = () => {
   // Lead Story data
   const leadStory: Story = {
@@ -145,14 +153,52 @@ const HomePage: NextPage = () => {
         { symbol: 'SOL', value: '$98.45', change: '+5.21%' },
       ]
     },
+  {
+    id: 'startups',
+    title: 'Startups',
+    data: [
+      { symbol: 'Funding', value: '$2.3B', change: '+12%' },
+      { symbol: 'IPOs', value: '18', change: '+8%' },
+      { symbol: 'Valuations', value: 'Avg $1.2B', change: '+5%' },
+    ]
+  },
+];
+
+  const companySpotlights: CompanySpotlight[] = [
     {
-      id: 'startups',
-      title: 'Startups',
-      data: [
-        { symbol: 'Funding', value: '$2.3B', change: '+12%' },
-        { symbol: 'IPOs', value: '18', change: '+8%' },
-        { symbol: 'Valuations', value: 'Avg $1.2B', change: '+5%' },
-      ]
+      id: 'company-1',
+      name: 'Global Exchange Systems',
+      sector: 'Fintech Platform',
+      ticker: 'GEXS',
+      logo: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=240&q=80'
+    },
+    {
+      id: 'company-2',
+      name: 'Pan-African Energy',
+      sector: 'Renewable Energy',
+      ticker: 'PAE',
+      logo: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=240&q=80'
+    },
+    {
+      id: 'company-3',
+      name: 'Harbor Logistics',
+      sector: 'Supply Chain',
+      ticker: 'HBLG',
+      logo: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=240&q=80'
+    },
+    {
+      id: 'company-4',
+      name: 'NextGen Pharma',
+      sector: 'Health Tech',
+      ticker: 'NGPH',
+      logo: 'https://images.unsplash.com/photo-1582711012124-a68ba48d9d6a?auto=format&fit=crop&w=240&q=80'
+    },
+    {
+      id: 'company-5',
+      name: 'Bridgewater Capital',
+      sector: 'Private Markets',
+      ticker: 'BWC',
+      logo: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=240&q=80'
     },
   ];
 
@@ -504,6 +550,31 @@ const HomePage: NextPage = () => {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="company-strip-section">
+        <div className="responsive-grid">
+          <div className="grid-item cols-12">
+            <div className="section-header">
+              <h2>Company Spotlights</h2>
+              <button className="more-btn">Explore partners</button>
+            </div>
+          </div>
+        </div>
+        <div className="company-strip">
+          {companySpotlights.map((company) => (
+            <article key={company.id} className="company-card">
+              <div className="company-logo">
+                <img src={company.logo} alt={`Logo of ${company.name}`} />
+              </div>
+              <div className="company-info">
+                <h3>{company.name}</h3>
+                <p>{company.sector}</p>
+                <span>{company.ticker}</span>
+              </div>
+            </article>
           ))}
         </div>
       </section>
