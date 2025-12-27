@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./utils/db');
+const connectDB = process.env.USE_MOCK_DB ? require('./utils/db.mock') : require('./utils/db');
 const platformRoutes = require('./routes/platform.routes');
 const adminRoutes = require('./routes/admin.routes');
 const videoRoutes = require('./routes/video.routes');

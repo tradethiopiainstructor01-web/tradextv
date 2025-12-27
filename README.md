@@ -21,4 +21,10 @@ Use this README as the starting point for wiring up the MVP Media + Creator + Ad
 
 ## Backend Setup
 - Copy `backend/.env.example` to `backend/.env` and fill in `MONGO_URI` with your MongoDB Atlas connection string (e.g., `mongodb+srv://user:pass@cluster/.../tradextv?retryWrites=true&w=majority`).
+- For development without MongoDB installed, set `USE_MOCK_DB=true` in the `.env` file to use in-memory data.
 - Run `npm install` inside `backend/` and then `npm run dev`. The app now sources `process.env.MONGO_URI` via `dotenv` and no longer attempts `localhost:27017`.
+
+## Connecting Frontend to Backend
+- Ensure the backend is running before starting the frontend
+- The frontend automatically connects to the backend via the `NEXT_PUBLIC_API_URL` environment variable in `frontend/.env`
+- Default configuration connects frontend on `http://localhost:3000` to backend on `http://localhost:5000/api`
