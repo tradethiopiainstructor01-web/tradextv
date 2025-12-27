@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
-import Slider from '../components/Slider';
+import { useEffect, useState } from 'react';
+import { fetchPlatformOverview, PlatformOverview } from '../services/platform';
 
 interface Story {
   id: string;
@@ -43,6 +44,41 @@ interface CompanySpotlight {
 }
 
 const HomePage: NextPage = () => {
+  const [platformOverview, setPlatformOverview] = useState<PlatformOverview | null>(null);
+  const [platformLoading, setPlatformLoading] = useState(true);
+  const [platformError, setPlatformError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isCanceled = false;
+
+    const loadOverview = async () => {
+      setPlatformLoading(true);
+
+      try {
+        const overview = await fetchPlatformOverview();
+        if (!isCanceled) {
+          setPlatformOverview(overview);
+          setPlatformError(null);
+        }
+      } catch (error) {
+        if (!isCanceled) {
+          const message = error instanceof Error ? error.message : 'Unexpected error';
+          setPlatformError(message);
+        }
+      } finally {
+        if (!isCanceled) {
+          setPlatformLoading(false);
+        }
+      }
+    };
+
+    loadOverview();
+
+    return () => {
+      isCanceled = true;
+    };
+  }, []);
+
   // Lead Story data
   const leadStory: Story = {
     id: 'lead-1',
@@ -442,37 +478,142 @@ const HomePage: NextPage = () => {
       title: 'Climate Risk and Financial Markets',
       summary: 'Investors must account for environmental factors in portfolio decisions',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80'
+      },
+      {
+        id: 'opinion-4',
+        author: 'Priya Sharma',
+        title: 'The Rise of DeFi: Opportunities and Risks',
+        summary: 'Decentralized finance offers innovation but requires careful regulation',
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80'
+      }
+    ];
+
+  const breakingHeadlines = [
+    {
+      id: 'hero-wide-1',
+      time: '08:32 GMT',
+      category: 'Markets',
+      title: 'Coffee Index keeps climbing as roasters race to secure supply chains'
     },
     {
-      id: 'opinion-4',
-      author: 'Priya Sharma',
-      title: 'The Rise of DeFi: Opportunities and Risks',
-      summary: 'Decentralized finance offers innovation but requires careful regulation',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80'
-    }
+      id: 'hero-wide-2',
+      time: '07:50 GMT',
+      category: 'Trade',
+      title: 'USD/ETB volatility eases after new liquidity injection from the central bank'
+    },
+    {
+      id: 'hero-wide-3',
+      time: '07:05 GMT',
+      category: 'Commodities',
+      title: 'Gold dips slightly while oil stays resilient ahead of OPEC+ meeting'
+    },
+    {
+      id: 'hero-wide-4',
+      time: '06:40 GMT',
+      category: 'Energy',
+      title: 'Renewable investors eye African infrastructure as demand for clean power surges'
+    },
   ];
 
   return (
     <div className="homepage-container">
-      <section className="lead-story-module">
-        <div className="responsive-grid">
-          <div className="grid-item cols-12">
-            <div className="hero-spotlight">
-              <div className="hero-content">
-                <div className="hero-kicker">TradeXTV</div>
+      <section className="lead-story-module hero-bright">
+        <div className="hero-spotlight hero-card">
+          <div className="hero-video-panel">
+            <div className="video-card">
+              <div className="live-badge">LIVE</div>
+              <div className="video-frame">
+                <img
+                  className="hero-video-bg"
+                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80"
+                  alt="Featured content"
+                />
+                <button className="play-btn" aria-label="Play featured video">
+                  <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="15.25" stroke="black" strokeOpacity="0.15" strokeWidth="1.5" />
+                    <path d="M14 11.5L21.5 16L14 20.5V11.5Z" fill="#0E2A47" />
+                  </svg>
+                </button>
+              </div>
+              <div className="video-copy">
+                <span className="video-tag">Featured Video</span>
                 <h1>Where Business, Markets & Innovation Meet Africa</h1>
                 <p className="hero-subhead">Premium financial insights and market analysis for African business leaders</p>
-                <div className="hero-actions">
-                  <button className="primary-btn blue">🎥 Watch Programs</button>
-                  <button className="primary-btn gold">🏢 Promote Your Company</button>
-                </div>
-              </div>
-              <div className="hero-video-section">
-                <img className="hero-video-bg" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Featured content" />
               </div>
             </div>
           </div>
+          <div className="hero-headlines">
+            <div className="hero-headlines-header">
+              <span>Breaking Headlines</span>
+              <p>Time • Category</p>
+            </div>
+            {breakingHeadlines.map((headline) => (
+              <article key={headline.id} className="headline-item">
+                <div className="headline-meta">
+                  <span className="headline-time">{headline.time}</span>
+                  <span className="headline-tag">{headline.category}</span>
+                </div>
+                <p>{headline.title}</p>
+              </article>
+            ))}
+          </div>
         </div>
+      </section>
+
+      <section className="platform-overview-section">
+        <div className="section-heading">
+          <span className="eyebrow">Platform Intelligence</span>
+          <h2>Live backend configuration</h2>
+          <p>Data from <code>/api/platform/overview</code> keeps the TradeXTV stack in sync.</p>
+        </div>
+        {platformLoading && <p className="platform-status">Loading platform data...</p>}
+        {platformError && (
+          <p className="platform-error">Unable to reach the backend: {platformError}</p>
+        )}
+        {platformOverview && (
+          <>
+            <div className="platform-grid categories-grid">
+              {platformOverview.categories.map((category) => (
+                <article key={category.id} className="overview-card">
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="platform-grid pillars-grid">
+              {platformOverview.featurePillars.map((pillar) => (
+                <article key={pillar.id} className="overview-card pillar-card">
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.description}</p>
+                  <ul>
+                    {pillar.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <div className="platform-programs">
+              {platformOverview.programs.map((program) => (
+                <article key={program.title} className="overview-card program-card">
+                  <h3>{program.title}</h3>
+                  <p>{program.description}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="platform-roles">
+              {platformOverview.roles.map((role) => (
+                <div key={role.name} className="role-row">
+                  <span className="role-name">{role.name}</span>
+                  <span className="role-access">{role.access}</span>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </section>
 
       {/* B. Market Snapshot Row */}

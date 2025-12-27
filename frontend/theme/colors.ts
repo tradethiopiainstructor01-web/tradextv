@@ -1,12 +1,17 @@
 export const colors = {
-  background: '#0B0F14', // main dark
-  surface: '#111827', // cards / panels
-  surfaceHover: '#1F2937',
+  baseBackground: '#FFFFFF', // page base
+  sectionBackground: '#F4F6F8', // panels / section blocks
+  cardBackground: '#FFFFFF', // cards
 
-  primaryBlue: '#1E40AF', // business blue
-  goldAccent: '#D4AF37', // premium gold
+  primaryText: '#1A1A1A', // headlines
+  secondaryText: '#5F6368', // metadata
 
-  textPrimary: '#F9FAFB',
-  textSecondary: '#9CA3AF',
-  border: '#1F2937',
+  brandBlue: '#0E2A47', // TRADEX
+  premiumGold: '#D4AF37', // TV accent
+
+  liveRed: '#C7372F', // alerts / breaking
+  positive: '#1E8E3E', // positive motion
+  negative: '#D93025', // negative motion
+
+  border: '#E0E4EA',
 };
