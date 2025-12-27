@@ -9,6 +9,7 @@
       }
     }
   ],
+  "outputDirectory": "frontend/.next",
   "routes": [
     {
       "src": "/(.*)",
