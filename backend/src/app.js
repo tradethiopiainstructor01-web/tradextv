@@ -22,6 +22,11 @@ const createApp = async () => {
     res.send('TradeXTV backend');
   });
 
+  // Health check endpoint for Vercel
+  app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK', message: 'TradeXTV backend is running' });
+  });
+
   app.use('/api/platform', platformRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/videos', videoRoutes);
