@@ -10,11 +10,16 @@ const createApp = async () => {
   await connectDB();
   const app = express();
 
-  app.use(cors());
+  // Configure CORS to allow requests from the frontend
+  app.use(cors({
+    origin: process.env.FRONTEND_URL || '*', // Set this to your frontend domain in production
+    credentials: true
+  }));
+  
   app.use(express.json());
 
   app.get('/', (req, res) => {
-    res.send('TradeXTV backend placeholder');
+    res.send('TradeXTV backend');
   });
 
   app.use('/api/platform', platformRoutes);
