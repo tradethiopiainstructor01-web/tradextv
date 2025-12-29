@@ -62,7 +62,9 @@ const HomePage: NextPage = () => {
         }
       } catch (error) {
         if (!isCanceled) {
-          const message = error instanceof Error ? error.message : 'Unexpected error';
+          // Log the error but don't fail the entire page
+          console.error('Error loading platform overview:', error);
+          const message = error instanceof Error ? error.message : 'Unable to load platform data';
           setPlatformError(message);
         }
       } finally {
@@ -72,10 +74,14 @@ const HomePage: NextPage = () => {
       }
     };
 
-    loadOverview();
+    // Add a small delay to ensure the page renders before making the API call
+    const timer = setTimeout(() => {
+      loadOverview();
+    }, 100);
 
     return () => {
       isCanceled = true;
+      clearTimeout(timer);
     };
   }, []);
 
